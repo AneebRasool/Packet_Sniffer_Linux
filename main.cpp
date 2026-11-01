@@ -17,7 +17,7 @@ if (interfacesuccess == -1){
 
 
 for (pcap_if_t *i = alldevs; i != nullptr; i = i->next) { //all devs = # of interfaces.
-    cout << "Found aen interface: " << i->name << endl;
+    cout << "Found interface: " << i->name << endl;
 }
 
 
