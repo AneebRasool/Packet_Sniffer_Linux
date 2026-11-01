@@ -4,5 +4,9 @@
 .compiled
 *~
 
+#common compiled names i like to use lol
+a
+test
+
 #ignore VS code file settings
 .vscode/
