@@ -3,6 +3,13 @@
 #include<vector>
 using namespace std;
 
+
+void packet_handler(u_char *user_args, const struct pcap_pkthdr *header, const u_char *packet){
+
+cout << "\n Packet captured. Length: "<< header->len;
+}
+
+
 int main()
 {
 
@@ -23,7 +30,7 @@ else{
 int x;
 vector<pcap_if_t*> interfaces;
 
-cout << "Found interfaces: ";
+cout << "Found interfaces: " << endl;
 for (pcap_if_t *i = alldevs; i != nullptr; i = i->next) { //all devs = # of interfaces from linked list.
      cout << i->name << endl;
      interfaces.push_back(i);
@@ -31,24 +38,30 @@ for (pcap_if_t *i = alldevs; i != nullptr; i = i->next) { //all devs = # of inte
 
 
 
-
-cout << "What interface would you like to choose: ";
-cout << "Enter Number from #0 (first interface) to #? (last interface) going up by 1's": << endl;
+cout << "What interface would you like to choose, ";
+cout << "enter number from #0 (first interface) to #? (last interface) going up by 1's: ";
 cin >> x;
 
-cout << "You picked interface: " << interfaces[x]->name;
+cout << "\nYou picked interface: " << interfaces[x]->name;
 
-pcap_t *handle = pcap_open_live(interfaces[x]->name, 65535, 1, 1000, errorbuffer); // (interface, byte limit, promiscious mode, time out ms, err buf) - paramaters.
+pcap_t *handle = pcap_open_live(interfaces[x]->name, 65535, 1, 10000, errorbuffer); // (interface, byte limit, promiscious mode, time out ms, err buf) - paramaters.
 
 if (handle == nullptr){
     cout << "could not open network interface " << interfaces[x]->name << errorbuffer;
 }
 
+
+pcap_loop(handle, 5, packet_handler, nullptr);
+
+
 }
-
-
 
 return 0;
 
 
 }
+
+
+
+
+
