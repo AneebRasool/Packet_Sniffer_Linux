@@ -1,0 +1,6 @@
+# ignore compiled binaries made from g++
+*.o/
+*.out/
+
+#ignore VS code file settings
+.vscode/
