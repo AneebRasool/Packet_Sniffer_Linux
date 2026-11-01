@@ -5,3 +5,6 @@ This packet sniffer uses the library 'libpcap', a very foundational library used
 
 # DEPENDANCIES
 1. Install libpcap on your target system (where you plan to run this.) 'Linux only!'
+```bash
+ apt-get install libpcap-dev 
+```
